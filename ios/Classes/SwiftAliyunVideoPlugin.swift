@@ -21,12 +21,12 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
             guard let arguments = call.arguments as? [String: Any] else {return}
             guard let mCreateType = arguments["mCreateType"] as? Int else {return}
             if let minDuration = arguments["mMinDuration"] as? Int {
-                mediaConfig?.minDuration = CGFloat.init(minDuration)
+                mediaConfig?.minDuration = CGFloat.init(minDuration/1000)
             }else {
                 mediaConfig?.minDuration = 2.0
             }
             if let maxDuration = arguments["mMaxDuration"] as? Int {
-                mediaConfig?.maxDuration = CGFloat.init(maxDuration)
+                mediaConfig?.maxDuration = CGFloat.init(maxDuration/1000)
             }else {
                 mediaConfig?.maxDuration = 10.0*60
             }
