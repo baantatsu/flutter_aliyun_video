@@ -16,8 +16,8 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
         if call.method == "startVideo" {
             
             let currentVC = UIViewController.current()
-            let mediaConfig = AliyunMediaConfig.default()
             
+            let mediaConfig = AliyunMediaConfig.default()
             guard let arguments = call.arguments as? [String: Any] else {return}
             guard let mCreateType = arguments["mCreateType"] as? Int else {return}
             if let minDuration = arguments["mMinDuration"] as? Int {
@@ -99,8 +99,9 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
                 let dict = ["fileType": "0", "filePath": path]
                 result(dict)
             }
-            currentVC?.present(cameraVC, animated: true, completion: {
-                
+            
+            currentVC?.present(cameraVC, animated: false, completion: {
+
             })
             print("打开页面成功")
             
