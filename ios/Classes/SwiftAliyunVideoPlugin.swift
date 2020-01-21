@@ -16,6 +16,7 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
         if call.method == "startVideo" {
             
             let currentVC = UIViewController.current()
+            currentVC?.modalPresentationStyle = .fullScreen
             
             let mediaConfig = AliyunMediaConfig.default()
             guard let arguments = call.arguments as? [String: Any] else {return}
@@ -89,6 +90,7 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
             mediaConfig?.backgroundColor = UIColor.black
 
             let cameraVC = AliyunMagicCameraViewController()
+            cameraVC.modalPresentationStyle = .fullScreen
             if mCreateType == 0 {
                 cameraVC.touchMode = .click
             }else {
@@ -101,7 +103,7 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
             }
             
             currentVC?.present(cameraVC, animated: false, completion: {
-
+                
             })
             print("打开页面成功")
             
