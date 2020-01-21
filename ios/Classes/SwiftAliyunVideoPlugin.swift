@@ -144,4 +144,10 @@ struct AliYun {
             "H264_SOFT_OPENH264"
         static let DEFAULT_CODECS_H264_H264_SOFT_FFMPEG = "H264_SOFT_FFMPEG"
     }
+    struct RatioMode {
+        static let DEFAULT_RATIO_MODE_3_4 = 0
+        static let DEFAULT_RATIO_MODE_1_1 = 1
+        static let DEFAULT_RATIO_MODE_9_16 = 2
+    }
+    
 }
