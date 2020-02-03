@@ -56,7 +56,7 @@ _AlivcLiveBeautifyLevelViewDelegate>
         _levelView.level = 0;
         
         __weak typeof(self) weakSelf = self;        
-        [_levelView.navigationView setRightImage:[UIImage imageNamed:@"ic_adjust"] action:^(_AlivcLiveBeautifyNavigationView *sender) {
+        [_levelView.navigationView setRightImage:[AlivcImage imageNamed:@"ic_adjust"] action:^(_AlivcLiveBeautifyNavigationView *sender) {
             [weakSelf showDetailView];
         }];
         [_contentView addSubview:_levelView];

@@ -8,7 +8,7 @@
 
 #import "AlivcImage.h"
 
-static NSString *theBundleName = @"Null";
+static NSString *theBundleName = @"aliyun_video";
 
 @implementation AlivcImage
 
@@ -18,12 +18,12 @@ static NSString *theBundleName = @"Null";
 
 + (UIImage *)imageNamed:(NSString *)imageName{
     //baan
-//    NSString *path = [NSString stringWithFormat:@"%@.bundle/%@",theBundleName,imageName];
-//    UIImage *image = [UIImage imageNamed:path];
-//    return image;
-    
-    UIImage *image = [UIImage imageNamed:imageName];
+    NSString *path = [NSString stringWithFormat:@"%@.bundle/%@",theBundleName,imageName];
+    UIImage *image = [UIImage imageNamed:path];
     return image;
+    
+//    UIImage *image = [UIImage imageNamed:imageName];
+//    return image;
 
 }
 
