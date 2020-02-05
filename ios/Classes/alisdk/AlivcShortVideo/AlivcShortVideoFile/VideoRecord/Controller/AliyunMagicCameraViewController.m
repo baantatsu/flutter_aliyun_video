@@ -560,20 +560,33 @@ AlivcRecordPasterViewDelegate>
                 if (localId == nil) {return;};
                 PHFetchResult* assetResult = [PHAsset fetchAssetsWithLocalIdentifiers:@[localId] options:nil];
                 PHAsset *asset = [assetResult firstObject];
-                [[PHImageManager defaultManager] requestImageDataForAsset:asset
-                                                                  options:nil
-                                                            resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-                    NSURL *fileUrl = [info objectForKey:@"PHImageFileURLKey"];
-                    if (fileUrl) {
-                        NSLog(@"Image path: %@", [fileUrl relativePath]);
-                        NSString *path = [fileUrl relativePath];
+//                [[PHImageManager defaultManager] requestImageDataForAsset:asset
+//                                                                  options:nil
+//                                                            resultHandler:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
+//                    NSURL *fileUrl = [info objectForKey:@"PHImageFileURLKey"];
+//                    if (fileUrl) {
+//                        NSLog(@"Image path: %@", [fileUrl relativePath]);
+//                        NSString *path = [fileUrl relativePath];
+//                        if (weakSelf.finishBlock) {
+//                            weakSelf.finishBlock(path);
+//                            [weakSelf backToFlutter];
+//                        }
+//                    } else {
+//                        NSLog(@"Error retrieving image filePath, heres whats available: %@", info);
+//                    }
+//                }];
+                
+                PHContentEditingInputRequestOptions *editOptions = [[PHContentEditingInputRequestOptions alloc] init];
+                [asset requestContentEditingInputWithOptions:editOptions completionHandler:^(PHContentEditingInput *contentEditingInput, NSDictionary *info) {
+
+                    if (contentEditingInput.fullSizeImageURL) {
+                        NSString *path = [contentEditingInput.fullSizeImageURL relativePath];
                         if (weakSelf.finishBlock) {
                             weakSelf.finishBlock(path);
                             [weakSelf backToFlutter];
                         }
-                    } else {
-                        NSLog(@"Error retrieving image filePath, heres whats available: %@", info);
                     }
+
                 }];
             }];
         }];
