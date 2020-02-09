@@ -12,105 +12,123 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     print("start call:\(call.method)")
-    DispatchQueue.main.async {
-        if call.method == "startVideo" {
-            
-            let currentVC = UIViewController.current()
-            currentVC?.modalPresentationStyle = .fullScreen
-            
-            let mediaConfig = AliyunMediaConfig.default()
-            guard let arguments = call.arguments as? [String: Any] else {return}
-            guard let mCreateType = arguments["mCreateType"] as? Int else {return}
-            if let minDuration = arguments["mMinDuration"] as? Int {
-                mediaConfig?.minDuration = CGFloat.init(minDuration/1000)
-            }else {
-                mediaConfig?.minDuration = 2.0
-            }
-            if let maxDuration = arguments["mMaxDuration"] as? Int {
-                mediaConfig?.maxDuration = CGFloat.init(maxDuration/1000)
-            }else {
-                mediaConfig?.maxDuration = 10.0*60
-            }
-            if let gop = arguments["mGop"] as? Int {
-                mediaConfig?.gop = Int32.init(gop)
-            }else {
-                mediaConfig?.gop = 5
-            }
-            if let encodeMode = arguments["mVideoCodec"] as? String {
-                if encodeMode == AliYun.CodecsMode.DEFAULT_CODECS_H264_HARDWARE {
-                    mediaConfig?.encodeMode = .hardH264
-                }
-                if encodeMode == AliYun.CodecsMode.DEFAULT_CODECS_H264_H264_SOFT_OPENH264 {
-                    
-                }
-                if encodeMode == AliYun.CodecsMode.DEFAULT_CODECS_H264_H264_SOFT_FFMPEG {
-                    mediaConfig?.encodeMode = .softFFmpeg
-                }
-            }else {
-                
-            }
-            if let mVideoQuality = arguments["mVideoQuality"] as? String {
-                switch mVideoQuality {
-                case AliYun.QualityMode.DEFAULT_QUALITY_SSD:
-                    mediaConfig?.videoQuality = .veryHight
-                case AliYun.QualityMode.DEFAULT_QUALITY_HD:
-                    mediaConfig?.videoQuality = .hight
-                case AliYun.QualityMode.DEFAULT_QUALITY_SD:
-                    mediaConfig?.videoQuality = .medium
-                case AliYun.QualityMode.DEFAULT_QUALITY_LD:
-                    mediaConfig?.videoQuality = .low
-                case AliYun.QualityMode.DEFAULT_QUALITY_PD:
-                    mediaConfig?.videoQuality = .poor
-                case AliYun.QualityMode.DEFAULT_QUALITY_EPD:
-                    mediaConfig?.videoQuality = .extraPoor
-                default:
-                    print("default")
-                }
-            }else {
-                
-            }
-            if let mFrame = arguments["mFrame"] as? Int {
-                
-            }else {
-                
-            }
-            if let mResolutionMode = arguments["mResolutionMode"] as? Int {
-                
-            }else {
-                
-            }
-            if let mRatioMode = arguments["mRatioMode"] as? Int {
-                
-            }else {
-                
-            }
-            mediaConfig?.fps = 25
-            mediaConfig?.cutMode = .scaleAspectFill
-            mediaConfig?.videoOnly = false
-            mediaConfig?.backgroundColor = UIColor.black
-
-            let cameraVC = AliyunMagicCameraViewController()
-            cameraVC.modalPresentationStyle = .fullScreen
-            if mCreateType == 0 {
-                cameraVC.touchMode = .click
-            }else {
-                cameraVC.touchMode = .longPress
-            }
-            cameraVC.setValue(mediaConfig, forKey: "quVideo")
-            cameraVC.finishBlock = { (path) -> () in
-                let dict = ["fileType": "0", "filePath": path]
-                result(dict)
-            }
-            
-            currentVC?.present(cameraVC, animated: false, completion: {
-                
-            })
-            print("打开页面成功")
-            
-        }
+    
+    if call.method == "startVideo" {
+//        self.startVideoHandle(call, result: result)
+        self.startCompositionHandle(call, result: result)
     }
     
   }
+    
+    public func startVideoHandle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        
+        let currentVC = UIViewController.current()
+        currentVC?.modalPresentationStyle = .fullScreen
+        
+        let mediaConfig = AliyunMediaConfig.default()
+        guard let arguments = call.arguments as? [String: Any] else {return}
+        guard let mCreateType = arguments["mCreateType"] as? Int else {return}
+        if let minDuration = arguments["mMinDuration"] as? Int {
+            mediaConfig?.minDuration = CGFloat.init(minDuration/1000)
+        }else {
+            mediaConfig?.minDuration = 2.0
+        }
+        if let maxDuration = arguments["mMaxDuration"] as? Int {
+            mediaConfig?.maxDuration = CGFloat.init(maxDuration/1000)
+        }else {
+            mediaConfig?.maxDuration = 10.0*60
+        }
+        if let gop = arguments["mGop"] as? Int {
+            mediaConfig?.gop = Int32.init(gop)
+        }else {
+            mediaConfig?.gop = 5
+        }
+        if let encodeMode = arguments["mVideoCodec"] as? String {
+            if encodeMode == AliYun.CodecsMode.DEFAULT_CODECS_H264_HARDWARE {
+                mediaConfig?.encodeMode = .hardH264
+            }
+            if encodeMode == AliYun.CodecsMode.DEFAULT_CODECS_H264_H264_SOFT_OPENH264 {
+                
+            }
+            if encodeMode == AliYun.CodecsMode.DEFAULT_CODECS_H264_H264_SOFT_FFMPEG {
+                mediaConfig?.encodeMode = .softFFmpeg
+            }
+        }else {
+            
+        }
+        if let mVideoQuality = arguments["mVideoQuality"] as? String {
+            switch mVideoQuality {
+            case AliYun.QualityMode.DEFAULT_QUALITY_SSD:
+                mediaConfig?.videoQuality = .veryHight
+            case AliYun.QualityMode.DEFAULT_QUALITY_HD:
+                mediaConfig?.videoQuality = .hight
+            case AliYun.QualityMode.DEFAULT_QUALITY_SD:
+                mediaConfig?.videoQuality = .medium
+            case AliYun.QualityMode.DEFAULT_QUALITY_LD:
+                mediaConfig?.videoQuality = .low
+            case AliYun.QualityMode.DEFAULT_QUALITY_PD:
+                mediaConfig?.videoQuality = .poor
+            case AliYun.QualityMode.DEFAULT_QUALITY_EPD:
+                mediaConfig?.videoQuality = .extraPoor
+            default:
+                print("default")
+            }
+        }else {
+            
+        }
+        if let mFrame = arguments["mFrame"] as? Int {
+            
+        }else {
+            
+        }
+        if let mResolutionMode = arguments["mResolutionMode"] as? Int {
+            
+        }else {
+            
+        }
+        if let mRatioMode = arguments["mRatioMode"] as? Int {
+            
+        }else {
+            
+        }
+        mediaConfig?.fps = 25
+        mediaConfig?.cutMode = .scaleAspectFill
+        mediaConfig?.videoOnly = false
+        mediaConfig?.backgroundColor = UIColor.black
+
+        let cameraVC = AliyunMagicCameraViewController()
+        cameraVC.modalPresentationStyle = .fullScreen
+        if mCreateType == 0 {
+            cameraVC.touchMode = .click
+        }else {
+            cameraVC.touchMode = .longPress
+        }
+        cameraVC.setValue(mediaConfig, forKey: "quVideo")
+        cameraVC.finishBlock = { (path) -> () in
+            let dict = ["fileType": "0", "filePath": path]
+            result(dict)
+        }
+        
+        currentVC?.present(cameraVC, animated: false, completion: {
+            
+        })
+    }
+    
+    public func startCompositionHandle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        let currentVC = UIViewController.current()
+        currentVC?.modalPresentationStyle = .fullScreen
+        
+//        let mediaConfig = AliyunMediaConfig.default()
+//        mediaConfig?.videoOnly = true
+//        let compositionVC = AliyunCompositionViewController()
+//        compositionVC.controllerType = .videoMix
+//        compositionVC.isOriginal = true
+//        compositionVC.compositionConfig = mediaConfig
+//        let navc = UINavigationController(rootViewController: compositionVC)
+//        currentVC?.present(navc, animated: false, completion: {
+//
+//        })
+    }
 }
 
 extension UIViewController {
