@@ -14,8 +14,8 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
     print("start call:\(call.method)")
     
     if call.method == "startVideo" {
-//        self.startVideoHandle(call, result: result)
-        self.startCompositionHandle(call, result: result)
+        self.startVideoHandle(call, result: result)
+//        self.startCompositionHandle(call, result: result)
     }
     
   }
