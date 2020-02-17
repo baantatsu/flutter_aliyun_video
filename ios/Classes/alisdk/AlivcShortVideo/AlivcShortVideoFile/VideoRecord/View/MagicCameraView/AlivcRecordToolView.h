@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 typedef NS_ENUM(NSInteger, AlivcRecordButtonTouchMode){
     AlivcRecordButtonTouchModeClick = 0,
-    AlivcRecordButtonTouchModeLongPress
+    AlivcRecordButtonTouchModeLongPress = 1
 };
 
 @protocol AlivcRecordToolViewDelegate <NSObject>

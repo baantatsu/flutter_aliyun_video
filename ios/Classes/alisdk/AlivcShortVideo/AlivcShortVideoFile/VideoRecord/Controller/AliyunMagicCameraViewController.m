@@ -536,6 +536,7 @@ AlivcRecordPasterViewDelegate>
 }
 
 - (void)alivcRecordBottomViewChangeTouchMode:(AlivcRecordButtonTouchMode *)mode {
+    self.touchMode = mode;
     if (mode == AlivcRecordButtonTouchModeClick) {
         self.progressView.hidden = false;
         self.bottomView.rateSelectView.hidden = false;
@@ -600,7 +601,9 @@ AlivcRecordPasterViewDelegate>
                     if (contentEditingInput.fullSizeImageURL) {
                         NSString *path = [contentEditingInput.fullSizeImageURL relativePath];
                         if (weakSelf.finishBlock) {
-                            weakSelf.finishBlock(path);
+                            NSString *type = [NSString stringWithFormat:@"%ld", self.touchMode];
+                            NSDictionary *dict = @{@"filePath":path, @"fileType": type};
+                            weakSelf.finishBlock(dict);
                             [weakSelf backToFlutter];
                         }
                     }
@@ -714,7 +717,9 @@ AlivcRecordPasterViewDelegate>
     //跳转处理
     NSString *outputPath = self.recorder.outputPath;
     if (self.finishBlock) {
-        self.finishBlock(outputPath);
+        NSString *type = [NSString stringWithFormat:@"%ld", self.touchMode];
+        NSDictionary *dict = @{@"filePath":outputPath, @"fileType": type};
+        self.finishBlock(dict);
         [self backToFlutter];
     }else{
         [[AlivcShortVideoRoute shared]registerEditVideoPath:outputPath];

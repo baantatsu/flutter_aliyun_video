@@ -104,9 +104,10 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
             cameraVC.touchMode = .longPress
         }
         cameraVC.setValue(mediaConfig, forKey: "quVideo")
-        cameraVC.finishBlock = { (path) -> () in
-            let dict = ["fileType": "\(mCreateType)", "filePath": path]
-            result(dict)
+        cameraVC.finishBlock = { (dict) -> () in
+            if let value = dict as? [String: Any] {
+                result(value)
+            }
         }
         
         currentVC?.present(cameraVC, animated: false, completion: {
