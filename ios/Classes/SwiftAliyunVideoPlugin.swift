@@ -105,7 +105,7 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
         }
         cameraVC.setValue(mediaConfig, forKey: "quVideo")
         cameraVC.finishBlock = { (path) -> () in
-            let dict = ["fileType": "0", "filePath": path]
+            let dict = ["fileType": "\(mCreateType)", "filePath": path]
             result(dict)
         }
         
