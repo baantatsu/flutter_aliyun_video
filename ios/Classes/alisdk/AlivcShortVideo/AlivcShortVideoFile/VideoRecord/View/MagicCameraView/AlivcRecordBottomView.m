@@ -9,7 +9,6 @@
 #import "AlivcRecordBottomView.h"
 #import "AlivcRecordUIConfig.h"
 #import "AlivcRecordToolView.h"
-#import "AlivcRecordButtonView.h"
 #import "AlivcButton.h"
 #import "NSString+AlivcHelper.h"
 
@@ -19,7 +18,7 @@
 
 @property(nonatomic, strong)AlivcButton *pasterBtn;
 
-@property(nonatomic, strong)AlivcRecordButtonView *recordButttonView;
+
 
 
 
@@ -84,6 +83,9 @@
 
 #pragma mark - Actions
 - (void)updateUI{
+    if (_toolView.touchMode == AlivcRecordButtonTouchModeLongPress) {
+        return;
+    }
     BOOL isRecording =[self isRecording];
     [_beautyBtn setHidden:isRecording];
     [_pasterBtn setHidden:isRecording];

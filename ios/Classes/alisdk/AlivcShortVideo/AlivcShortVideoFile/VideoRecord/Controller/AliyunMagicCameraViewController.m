@@ -540,9 +540,11 @@ AlivcRecordPasterViewDelegate>
     if (mode == AlivcRecordButtonTouchModeClick) {
         self.progressView.hidden = false;
         self.bottomView.rateSelectView.hidden = false;
+        self.bottomView.recordButttonView.timeLab.hidden = false;
     }else {
         self.progressView.hidden = true;
         self.bottomView.rateSelectView.hidden = true;
+        self.bottomView.recordButttonView.timeLab.hidden = true;
     }
 }
 
