@@ -151,11 +151,6 @@ AlivcRecordPasterViewDelegate>
     [self.view addSubview:self.recorder.preview];
     //添加顶部录制进度条
     [self.view addSubview:self.progressView];
-    if (self.touchMode == AlivcRecordButtonTouchModeClick) {
-        self.progressView.hidden = false;
-    }else {
-        self.progressView.hidden = true;
-    }
     //添加顶部导航条
     _navigationBar =[[AlivcRecordNavigationBar alloc]initWithUIConfig:_uiConfig];
     _navigationBar.delegate =self;
@@ -164,6 +159,13 @@ AlivcRecordPasterViewDelegate>
 //    [self.view addSubview:self.sliderButtonsView];
     //添加底部view
     [self.view addSubview:self.bottomView];
+    if (self.touchMode == AlivcRecordButtonTouchModeClick) {
+        self.progressView.hidden = false;
+        self.bottomView.rateSelectView.hidden = false;
+    }else {
+        self.progressView.hidden = true;
+        self.bottomView.rateSelectView.hidden = true;
+    }
 }
 // 监听通知
 - (void)addNotification
@@ -536,8 +538,10 @@ AlivcRecordPasterViewDelegate>
 - (void)alivcRecordBottomViewChangeTouchMode:(AlivcRecordButtonTouchMode *)mode {
     if (mode == AlivcRecordButtonTouchModeClick) {
         self.progressView.hidden = false;
+        self.bottomView.rateSelectView.hidden = false;
     }else {
         self.progressView.hidden = true;
+        self.bottomView.rateSelectView.hidden = true;
     }
 }
 

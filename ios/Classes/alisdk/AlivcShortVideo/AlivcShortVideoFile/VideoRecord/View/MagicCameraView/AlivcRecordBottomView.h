@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AlivcRecordToolView.h"
+#import "AlivcRecordRateSelectView.h"
 
 @class AlivcRecordUIConfig;
 
@@ -69,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak)id<AlivcRecordBottomViewDelegate>delegate;
 
 @property(nonatomic, strong)AlivcRecordToolView *toolView;
+
+@property(nonatomic, strong)AlivcRecordRateSelectView *rateSelectView;
 
 //初始化拍摄模式-baan
 @property(nonatomic, assign)AlivcRecordButtonTouchMode touchMode;

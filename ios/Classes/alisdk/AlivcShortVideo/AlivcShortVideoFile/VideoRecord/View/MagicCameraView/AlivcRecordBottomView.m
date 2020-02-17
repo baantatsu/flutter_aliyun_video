@@ -7,7 +7,6 @@
 //
 
 #import "AlivcRecordBottomView.h"
-#import "AlivcRecordRateSelectView.h"
 #import "AlivcRecordUIConfig.h"
 #import "AlivcRecordToolView.h"
 #import "AlivcRecordButtonView.h"
@@ -22,7 +21,7 @@
 
 @property(nonatomic, strong)AlivcRecordButtonView *recordButttonView;
 
-@property(nonatomic, strong)AlivcRecordRateSelectView *rateSelectView;
+
 
 @end
 
