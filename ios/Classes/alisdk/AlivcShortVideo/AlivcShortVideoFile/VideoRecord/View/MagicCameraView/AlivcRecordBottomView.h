@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AlivcRecordToolView.h"
+
 @class AlivcRecordUIConfig;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -55,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
  特效按钮点击事件
  */
 - (void)alivcRecordBottomViewEffectButtonOnclick;
+
+/**
+ 切换视频/照片
+ */
+- (void)alivcRecordBottomViewChangeTouchMode:(AlivcRecordButtonTouchMode *)mode;
 
 @end
 

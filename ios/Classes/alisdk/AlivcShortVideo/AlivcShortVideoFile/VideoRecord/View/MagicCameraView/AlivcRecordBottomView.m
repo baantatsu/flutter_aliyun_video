@@ -141,6 +141,9 @@
 #pragma mark - AlivcRecordToolViewDelegate
 - (void)alivcRecordToolViewSwitchTouchMode:(AlivcRecordButtonTouchMode)touchMode{
     [_recordButttonView switchShowRecordButtonTip:(touchMode==AlivcRecordButtonTouchModeLongPress && ![self isRecording])];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(alivcRecordBottomViewChangeTouchMode:)]) {
+        [self.delegate alivcRecordBottomViewChangeTouchMode:touchMode];
+    }
 }
 - (void)alivcRecordToolViewDeleteVideoPart{
     if (self.delegate && [self.delegate respondsToSelector:@selector(alivcRecordBottomViewDeleteVideoPart)]) {

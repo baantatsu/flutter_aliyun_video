@@ -151,6 +151,11 @@ AlivcRecordPasterViewDelegate>
     [self.view addSubview:self.recorder.preview];
     //添加顶部录制进度条
     [self.view addSubview:self.progressView];
+    if (self.touchMode == AlivcRecordButtonTouchModeClick) {
+        self.progressView.hidden = false;
+    }else {
+        self.progressView.hidden = true;
+    }
     //添加顶部导航条
     _navigationBar =[[AlivcRecordNavigationBar alloc]initWithUIConfig:_uiConfig];
     _navigationBar.delegate =self;
@@ -527,6 +532,15 @@ AlivcRecordPasterViewDelegate>
     [self.progressView updateProgress:[self duration]];
     [self updateViewsStatus];
 }
+
+- (void)alivcRecordBottomViewChangeTouchMode:(AlivcRecordButtonTouchMode *)mode {
+    if (mode == AlivcRecordButtonTouchModeClick) {
+        self.progressView.hidden = false;
+    }else {
+        self.progressView.hidden = true;
+    }
+}
+
 - (BOOL)alivcRecordBottomViewStartRecord{
 //    if (_stopRecordActionUnfinished) {
 //        NSLog(@"有停止录制动作未完成");
