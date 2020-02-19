@@ -411,7 +411,7 @@ AlivcRecordPasterViewDelegate>
         {
             [self.recorder stopPreview];
             #if SDK_VERSION == SDK_VERSION_CUSTOM
-            [[AlivcShortVideoFaceUnityManager shareManager] destoryItems];
+//            [[AlivcShortVideoFaceUnityManager shareManager] destoryItems];
             #endif
             [self backToFlutter];
             
@@ -758,22 +758,22 @@ AlivcRecordPasterViewDelegate>
 }
 // 集成faceunity
 #if SDK_VERSION == SDK_VERSION_CUSTOM
-- (CVPixelBufferRef)customRenderedPixelBufferWithRawSampleBuffer:(CMSampleBufferRef)sampleBuffer {
-    if (self.beautyView.currentBeautyType == AlivcBeautySettingViewStyle_ShortVideo_BeautyFace_Base) {
-        return CMSampleBufferGetImageBuffer(sampleBuffer);
-    }
-    //注意这里美颜美肌的参数是分开的beautyParams和beautySkinParams
-    //美颜参数设置(这里用的是beautyParams)
-    CGFloat beautyWhite = self.beautyView.beautyParams.beautyWhite;
-    CGFloat beautyBuffing = self.beautyView.beautyParams.beautyBuffing;
-    CGFloat beautyRuddy = self.beautyView.beautyParams.beautyRuddy;
-    //美肌参数设置(这里用的是beautySkinParams)
-    CGFloat beautyBigEye = self.beautyView.beautySkinParams.beautyBigEye;
-    CGFloat beautySlimFace = self.beautyView.beautySkinParams.beautySlimFace;
-    
-    CVPixelBufferRef buf = [[AlivcShortVideoFaceUnityManager shareManager] RenderedPixelBufferWithRawSampleBuffer:sampleBuffer beautyWhiteValue:beautyWhite/100.0 blurValue:beautyBuffing/100.0 bigEyeValue:beautyBigEye/100.0 slimFaceValue:beautySlimFace/100.0 buddyValue:beautyRuddy/100.0];
-    return buf;
-}
+//- (CVPixelBufferRef)customRenderedPixelBufferWithRawSampleBuffer:(CMSampleBufferRef)sampleBuffer {
+//    if (self.beautyView.currentBeautyType == AlivcBeautySettingViewStyle_ShortVideo_BeautyFace_Base) {
+//        return CMSampleBufferGetImageBuffer(sampleBuffer);
+//    }
+//    //注意这里美颜美肌的参数是分开的beautyParams和beautySkinParams
+//    //美颜参数设置(这里用的是beautyParams)
+//    CGFloat beautyWhite = self.beautyView.beautyParams.beautyWhite;
+//    CGFloat beautyBuffing = self.beautyView.beautyParams.beautyBuffing;
+//    CGFloat beautyRuddy = self.beautyView.beautyParams.beautyRuddy;
+//    //美肌参数设置(这里用的是beautySkinParams)
+//    CGFloat beautyBigEye = self.beautyView.beautySkinParams.beautyBigEye;
+//    CGFloat beautySlimFace = self.beautyView.beautySkinParams.beautySlimFace;
+//
+//    CVPixelBufferRef buf = [[AlivcShortVideoFaceUnityManager shareManager] RenderedPixelBufferWithRawSampleBuffer:sampleBuffer beautyWhiteValue:beautyWhite/100.0 blurValue:beautyBuffing/100.0 bigEyeValue:beautyBigEye/100.0 slimFaceValue:beautySlimFace/100.0 buddyValue:beautyRuddy/100.0];
+//    return buf;
+//}
 #endif
 
 #pragma mark - 动图数据相关 -
@@ -965,7 +965,7 @@ AlivcRecordPasterViewDelegate>
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #if SDK_VERSION == SDK_VERSION_CUSTOM
 
-    [[AlivcShortVideoFaceUnityManager shareManager] destoryItems];
+//    [[AlivcShortVideoFaceUnityManager shareManager] destoryItems];baan
 #endif
 }
 
