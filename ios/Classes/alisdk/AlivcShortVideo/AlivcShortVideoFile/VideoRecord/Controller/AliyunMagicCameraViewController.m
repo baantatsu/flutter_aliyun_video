@@ -603,7 +603,7 @@ AlivcRecordPasterViewDelegate>
                     if (contentEditingInput.fullSizeImageURL) {
                         NSString *path = [contentEditingInput.fullSizeImageURL relativePath];
                         if (weakSelf.finishBlock) {
-                            NSString *type = [NSString stringWithFormat:@"%ld", self.touchMode];
+                            NSString *type = [NSString stringWithFormat:@"%ld", weakSelf.touchMode];
                             NSDictionary *dict = @{@"filePath":path, @"fileType": type};
                             weakSelf.finishBlock(dict);
                             [weakSelf backToFlutter];
