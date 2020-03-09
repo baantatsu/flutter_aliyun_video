@@ -61,5 +61,7 @@ typedef NS_ENUM(NSInteger, AlivcRecordButtonTouchMode){
  */
 - (void)showDeleteButton:(BOOL)show;
 
+- (void)hideMixButton;
+
 @end
 NS_ASSUME_NONNULL_END

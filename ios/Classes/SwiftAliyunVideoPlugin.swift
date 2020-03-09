@@ -14,8 +14,8 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
     print("start call:\(call.method)")
     
     if call.method == "startVideo" {
-        self.startVideoHandle(call, result: result)
-//        self.startCompositionHandle(call, result: result)
+//        self.startVideoHandle(call, result: result)
+        self.startCompositionHandle(call, result: result)
     }
     
   }
@@ -119,16 +119,22 @@ public class SwiftAliyunVideoPlugin: NSObject, FlutterPlugin {
         let currentVC = UIViewController.current()
         currentVC?.modalPresentationStyle = .fullScreen
         
-//        let mediaConfig = AliyunMediaConfig.default()
-//        mediaConfig?.videoOnly = true
-//        let compositionVC = AliyunCompositionViewController()
-//        compositionVC.controllerType = .videoMix
-//        compositionVC.isOriginal = true
-//        compositionVC.compositionConfig = mediaConfig
-//        let navc = UINavigationController(rootViewController: compositionVC)
-//        currentVC?.present(navc, animated: false, completion: {
-//
-//        })
+        let mediaConfig = AliyunMediaConfig.default()
+        mediaConfig?.videoOnly = true
+        let compositionVC = AliyunCompositionViewController()
+        compositionVC.controllerType = .videoMix
+        compositionVC.isOriginal = true
+        compositionVC.compositionConfig = mediaConfig
+        compositionVC.finishBlock = { (dict) -> () in
+            if let value = dict as? [String: Any] {
+                result(value)
+            }
+        }
+        let navc = UINavigationController(rootViewController: compositionVC)
+        navc.modalPresentationStyle = .fullScreen
+        currentVC?.present(navc, animated: false, completion: {
+
+        })
     }
 }
 

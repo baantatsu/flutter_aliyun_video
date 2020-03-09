@@ -166,6 +166,10 @@ AlivcRecordPasterViewDelegate>
         self.progressView.hidden = true;
         self.bottomView.rateSelectView.hidden = true;
     }
+    if (!self.finishBlock) {
+        //隐藏照片,视频文字
+        [self.bottomView.toolView hideMixButton];
+    }
 }
 // 监听通知
 - (void)addNotification
@@ -734,6 +738,7 @@ AlivcRecordPasterViewDelegate>
         }
         [[AlivcShortVideoRoute shared] registerIsMixedVideo:self.isMixedViedo];
         UIViewController *editVC = [[AlivcShortVideoRoute shared]alivcViewControllerWithType:AlivcViewControlEdit];
+        //baan
         [self.navigationController pushViewController:editVC animated:YES];
     }
     [MBProgressHUD hideHUDForView:self.view animated:YES];

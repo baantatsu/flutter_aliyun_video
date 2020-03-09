@@ -41,6 +41,7 @@ A new flutter plugin project.
   s.dependency 'UMCCommon'
   s.dependency 'UMCAnalytics'
   s.dependency 'Nama-lite'
+  s.vendored_frameworks = 'Framework/*.framework'
 
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
