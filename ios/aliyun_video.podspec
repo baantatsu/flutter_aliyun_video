@@ -21,6 +21,8 @@ A new flutter plugin project.
   s.platform = :ios, '8.0'
   
   s.static_framework = true
+  # 用于引入头文件,解决自定义头文件被覆盖问题.
+  s.prefix_header_contents = '#import <UIKit/UIKit.h>', '#import <Foundation/Foundation.h>', '#import "AlivcImage.h"', '#import "AlivcMacro.h"'
   
   s.dependency 'AliyunVideoSDKStd'
   s.dependency 'QuCore-ThirdParty'
@@ -41,6 +43,7 @@ A new flutter plugin project.
   s.dependency 'UMCCommon'
   s.dependency 'UMCAnalytics'
   s.dependency 'Nama-lite'
+  # 用于引入第三方framework,对应路径 flutter_aliyun_video/ios/Framework
   s.vendored_frameworks = 'Framework/*.framework'
 
 
